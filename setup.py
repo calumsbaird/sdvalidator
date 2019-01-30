@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="sdvalidator",
-    version="2.1.8",
+    version="2.1.9",
     author="Calum Baird",
     author_email="calum.baird7011@gmail.com",
     description="SPF and DMARC validation tool",

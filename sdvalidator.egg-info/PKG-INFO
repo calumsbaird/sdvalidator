@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: sdvalidator
+Version: 2.1.9
+Summary: SPF and DMARC validation tool
+Home-page: UNKNOWN
+Author: Calum Baird
+Author-email: calum.baird7011@gmail.com
+License: UNKNOWN
+Description: # SPF and DMARC validator
+        
+        This link helped <https://stackoverflow.com/questions/39280326/python-entry-point-console-scripts-not-found>
+        
+        ## TODO
+        - Better processing for DMARC records
+        - docs
+        
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown

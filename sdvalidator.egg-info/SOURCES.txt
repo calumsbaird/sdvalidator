@@ -1,0 +1,17 @@
+README.md
+setup.py
+sdvalidator/__init__.py
+sdvalidator/bar.py
+sdvalidator/command_line.py
+sdvalidator/dns_grab.py
+sdvalidator/functions.py
+sdvalidator/resolver.py
+sdvalidator/validate.py
+sdvalidator.egg-info/PKG-INFO
+sdvalidator.egg-info/SOURCES.txt
+sdvalidator.egg-info/dependency_links.txt
+sdvalidator.egg-info/top_level.txt
+sdvalidator/aux/__init__.py
+sdvalidator/aux/domain.py
+sdvalidator/spf/__init__.py
+sdvalidator/spf/foo.py

@@ -1,3 +1,3 @@
 import sdvalidator
-print(dir(sdvalidator))
-sdvalidator.validate_sd([''])
+#print(dir(sdvalidator))
+print(sdvalidator.validate_spf('dl-uat.nla.gov.au'))
