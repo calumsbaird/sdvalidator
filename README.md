@@ -4,4 +4,6 @@ This link helped <https://stackoverflow.com/questions/39280326/python-entry-poin
 
 ## TODO
 - Better processing for DMARC records
+- docs
+
 
