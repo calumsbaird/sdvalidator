@@ -10,6 +10,7 @@ sdvalidator/validate.py
 sdvalidator.egg-info/PKG-INFO
 sdvalidator.egg-info/SOURCES.txt
 sdvalidator.egg-info/dependency_links.txt
+sdvalidator.egg-info/entry_points.txt
 sdvalidator.egg-info/top_level.txt
 sdvalidator/aux/__init__.py
 sdvalidator/aux/domain.py
