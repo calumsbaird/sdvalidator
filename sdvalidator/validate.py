@@ -1,6 +1,23 @@
+"""
+validate.py
+===============
+Validateor module
+"""
+
+
 import sdvalidator, re
 def validate_spf(domain, cache={}, depth=0):
     
+    """
+    Test doc string
+
+    Parameters
+    ----------
+
+    domain
+        A string
+    """
+
     # Get spf record
     if not domain in cache:
         sdvalidator.pull_sd([domain],cache=cache)
