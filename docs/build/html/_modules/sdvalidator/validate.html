@@ -45,15 +45,33 @@
           <div class="body" role="main">
             
   <h1>Source code for sdvalidator.validate</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">sdvalidator</span><span class="o">,</span> <span class="nn">re</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">validate.py</span>
+<span class="sd">===============</span>
+<span class="sd">Validateor module</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="kn">import</span> <span class="nn">sdvalidator</span><span class="o">,</span> <span class="nn">re</span>
 <div class="viewcode-block" id="validate_spf"><a class="viewcode-back" href="../../index.html#sdvalidator.validate_spf">[docs]</a><span class="k">def</span> <span class="nf">validate_spf</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="p">{},</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Test doc string</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    domain</span>
+<span class="sd">        A string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="c1"># Get spf record</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">cache</span><span class="p">:</span>
         <span class="n">sdvalidator</span><span class="o">.</span><span class="n">pull_sd</span><span class="p">([</span><span class="n">domain</span><span class="p">],</span><span class="n">cache</span><span class="o">=</span><span class="n">cache</span><span class="p">)</span>
     <span class="n">records</span> <span class="o">=</span> <span class="n">cache</span><span class="p">[</span><span class="n">domain</span><span class="p">][</span><span class="s1">&#39;spf&#39;</span><span class="p">]</span>
     
     <span class="c1"># Check it is valid length</span>
+    <span class="c1">#print(records)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="s1">&#39;MISSING&#39;</span>
     <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>

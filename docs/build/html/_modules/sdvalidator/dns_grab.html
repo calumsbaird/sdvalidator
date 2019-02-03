@@ -59,12 +59,14 @@
 
 
 <span class="kn">import</span> <span class="nn">dns.resolver</span>
+<span class="n">resolver</span> <span class="o">=</span> <span class="n">dns</span><span class="o">.</span><span class="n">resolver</span><span class="o">.</span><span class="n">Resolver</span><span class="p">()</span>
 <div class="viewcode-block" id="resolve_record"><a class="viewcode-back" href="../../index.html#sdvalidator.resolve_record">[docs]</a><span class="k">def</span> <span class="nf">resolve_record</span><span class="p">(</span><span class="n">domain</span><span class="p">):</span>
-    
+     
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># Get the txt records for the domain</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">dns</span><span class="o">.</span><span class="n">resolver</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="s1">&#39;TXT&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">answer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">resolver</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="s1">&#39;TXT&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="c1">#print(e)</span>
         <span class="k">return</span> <span class="p">[]</span>  <span class="c1"># Returning on any error getting the response</span>
     <span class="c1">#except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN):</span>
     <span class="c1">#    return []</span>
