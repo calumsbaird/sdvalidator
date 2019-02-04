@@ -9,7 +9,7 @@ import sdvalidator, re
 def validate_spf(domain, cache={}, depth=0):
     
     """
-    Test doc string
+    Test1234 doc string
 
     Parameters
     ----------

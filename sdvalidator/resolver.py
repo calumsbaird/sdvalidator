@@ -1,9 +1,20 @@
+'''
+resolver.py
+===========
+'''
+
 import socket, time, signal
 
 def resolves(domain):
-    '''
+    """
 	If domain resolves to an A, AAAA or CNAME return True 
-	'''
+	
+	Parameters
+	----------
+	
+	domain
+		A string such as 'example.com'
+	"""
 	try:
         #socket.gethostbyname(domain)
 		socket.getaddrinfo(domain,80)
