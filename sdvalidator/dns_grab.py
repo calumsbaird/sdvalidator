@@ -1,5 +1,11 @@
 def pull_spf(domain):
-    
+    """
+    Get all txt records that look like they are an spf record
+
+    :param str domain: domain like example.com
+    :returns: List of records that look like they are spf records.
+    :rtype: list
+    """
     # Return any record that appears to be an spf record
     return list(filter(lambda s: s.lower().startswith('v=spf'), resolve_record(domain)))
 

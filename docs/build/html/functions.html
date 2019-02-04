@@ -1,0 +1,202 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Functions &#8212; sdvalidator 2.1.11 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Usage" href="usage.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="Usage"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">sdvalidator 2.1.11 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-sdvalidator">
+<span id="functions"></span><h1>Functions<a class="headerlink" href="#module-sdvalidator" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="sdvalidator.resolves">
+<code class="descclassname">sdvalidator.</code><code class="descname">resolves</code><span class="sig-paren">(</span><em>domain</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sdvalidator/resolver.html#resolves"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdvalidator.resolves" title="Permalink to this definition">¶</a></dt>
+<dd><p>If domain resolves to an A, AAAA or CNAME return True</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A domain such as ‘example.com’</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if resolves to an address</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="sdvalidator.filter_resolving_domains">
+<code class="descclassname">sdvalidator.</code><code class="descname">filter_resolving_domains</code><span class="sig-paren">(</span><em>domains</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sdvalidator/resolver.html#filter_resolving_domains"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdvalidator.filter_resolving_domains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters out any non-resolving domain from a list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>domains</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A list of str domains</li>
+<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Optionally print progress of filter</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of resolving domains</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">List:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="sdvalidator.pull_spf">
+<code class="descclassname">sdvalidator.</code><code class="descname">pull_spf</code><span class="sig-paren">(</span><em>domain</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sdvalidator/dns_grab.html#pull_spf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdvalidator.pull_spf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all txt records that look like they are an spf record</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – domain like example.com</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of records that look like they are spf records.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)">list</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="sdvalidator.pull_dmarc">
+<code class="descclassname">sdvalidator.</code><code class="descname">pull_dmarc</code><span class="sig-paren">(</span><em>domain</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sdvalidator/dns_grab.html#pull_dmarc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdvalidator.pull_dmarc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="sdvalidator.resolve_record">
+<code class="descclassname">sdvalidator.</code><code class="descname">resolve_record</code><span class="sig-paren">(</span><em>domain</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sdvalidator/dns_grab.html#resolve_record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdvalidator.resolve_record" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="sdvalidator.pull_sd">
+<code class="descclassname">sdvalidator.</code><code class="descname">pull_sd</code><span class="sig-paren">(</span><em>domains</em>, <em>cache={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sdvalidator/dns_grab.html#pull_sd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdvalidator.pull_sd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="sdvalidator.validate_spf">
+<code class="descclassname">sdvalidator.</code><code class="descname">validate_spf</code><span class="sig-paren">(</span><em>domain</em>, <em>cache={}</em>, <em>depth=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sdvalidator/validate.html#validate_spf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdvalidator.validate_spf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test1234 doc string</p>
+<dl class="docutils">
+<dt>domain</dt>
+<dd>A string</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="sdvalidator.validate_dmarc">
+<code class="descclassname">sdvalidator.</code><code class="descname">validate_dmarc</code><span class="sig-paren">(</span><em>domain</em>, <em>cache={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sdvalidator/validate.html#validate_dmarc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdvalidator.validate_dmarc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="sdvalidator.validate_sd">
+<code class="descclassname">sdvalidator.</code><code class="descname">validate_sd</code><span class="sig-paren">(</span><em>domains</em>, <em>cache={}</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sdvalidator/validate.html#validate_sd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdvalidator.validate_sd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table of Contents</a></h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Functions</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="usage.html"
+                        title="previous chapter">Usage</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/functions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="Usage"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">sdvalidator 2.1.11 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Calum Baird.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>
