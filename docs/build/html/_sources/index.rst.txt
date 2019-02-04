@@ -18,6 +18,30 @@ Welcome to sdvalidator's documentation!
 Quick Start
 ===========
 
+Command line
+^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ pip3 install sdvalidator
+    $ sdvalidate csbaird.com
+    VALID
+
+Script
+^^^^^^
+
+test.py::
+
+    from sdvalidator import *
+    domains = ['csbaird.com','google.com','github.com']
+    cache = validate_sd(domains,verbose=True)
+    print(cache['csbaird.com']['spf_validity']) # VALID
+
+.. code-block:: console
+
+    $ python3 test.py
+    VALID
+
 
 Indices and tables
 ==================

@@ -7,6 +7,9 @@ import socket, time, signal
 
 def resolves(domain):
     """
+    >>> resolves('csbaird.com')
+    True
+    
     If domain resolves to an A, AAAA or CNAME return True 
     
     :param str domain: A domain such as 'example.com' 
@@ -22,6 +25,9 @@ def resolves(domain):
 
 def filter_resolving_domains(domains, verbose=False):
     """
+    >>> filter_resolving_domains(['csbaird.com','fake.csbaird.com'])
+    ['csbaird.com']
+
     Filters out any non-resolving domain from a list.
     
     :param list domains: A list of str domains

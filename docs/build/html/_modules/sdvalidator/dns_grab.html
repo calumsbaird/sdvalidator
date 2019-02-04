@@ -41,6 +41,9 @@
   <h1>Source code for sdvalidator.dns_grab</h1><div class="highlight"><pre>
 <div class="viewcode-block" id="pull_spf"><a class="viewcode-back" href="../../functions.html#sdvalidator.pull_spf">[docs]</a><span></span><span class="k">def</span> <span class="nf">pull_spf</span><span class="p">(</span><span class="n">domain</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &gt;&gt;&gt; pull_spf(&#39;csbaird.com&#39;)</span>
+<span class="sd">    [&#39;v=spf1 mx -all&#39;]</span>
+
 <span class="sd">    Get all txt records that look like they are an spf record</span>
 
 <span class="sd">    :param str domain: domain like example.com</span>
@@ -52,7 +55,17 @@
 
 
 <div class="viewcode-block" id="pull_dmarc"><a class="viewcode-back" href="../../functions.html#sdvalidator.pull_dmarc">[docs]</a><span class="k">def</span> <span class="nf">pull_dmarc</span><span class="p">(</span><span class="n">domain</span><span class="p">):</span>
-    
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &gt;&gt;&gt; pull_dmarc(&#39;csbaird.com&#39;)</span>
+<span class="sd">    [&#39;v=DMARC1;  p=reject; pct=100; rua=mailto:root@csbaird.com; ruf=mailto:root@csbaird.com&#39;]</span>
+<span class="sd">    </span>
+<span class="sd">    Get all txt records that look like they are an dmarc record</span>
+
+<span class="sd">    :param str domain: domain like example.com</span>
+<span class="sd">    :returns: List of records that look like they are dmarc records.</span>
+<span class="sd">    :rtype: list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+        
     <span class="c1"># Return any record that appears to be a dmarc record</span>
     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;v=dmarc&#39;</span><span class="p">),</span>
         <span class="n">resolve_record</span><span class="p">(</span><span class="s1">&#39;_dmarc.&#39;</span><span class="o">+</span><span class="n">domain</span><span class="p">)))</span></div>
@@ -61,7 +74,17 @@
 <span class="kn">import</span> <span class="nn">dns.resolver</span>
 <span class="n">resolver</span> <span class="o">=</span> <span class="n">dns</span><span class="o">.</span><span class="n">resolver</span><span class="o">.</span><span class="n">Resolver</span><span class="p">()</span>
 <div class="viewcode-block" id="resolve_record"><a class="viewcode-back" href="../../functions.html#sdvalidator.resolve_record">[docs]</a><span class="k">def</span> <span class="nf">resolve_record</span><span class="p">(</span><span class="n">domain</span><span class="p">):</span>
-     
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &gt;&gt;&gt; resolve_record(&#39;csbaird.com&#39;)</span>
+<span class="sd">    [&#39;ca3-0eb269d493c84687a2b27e8bea13ca55&#39;, &#39;v=spf1 mx -all&#39;]</span>
+
+<span class="sd">    Get all txt records associated with a domain.</span>
+<span class="sd">    If a CNAME gets record of the domain it redirects to.</span>
+
+<span class="sd">    :param str domain: domain like example.com</span>
+<span class="sd">    :returns: List of txt records associated with the domain</span>
+<span class="sd">    :rtype: list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># Get the txt records for the domain</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">resolver</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="s1">&#39;TXT&#39;</span><span class="p">)</span>
@@ -76,7 +99,18 @@
 
 
 <div class="viewcode-block" id="pull_sd"><a class="viewcode-back" href="../../functions.html#sdvalidator.pull_sd">[docs]</a><span class="k">def</span> <span class="nf">pull_sd</span><span class="p">(</span><span class="n">domains</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="p">{}):</span>
-    
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &gt;&gt;&gt; dns_grab.pull_sd([&#39;csbaird.com&#39;])</span>
+<span class="sd">    {&#39;csbaird.com&#39;: {&#39;spf&#39;: [&#39;v=spf1 mx -all&#39;], &#39;dmarc&#39;: [&#39;v=DMARC1;  p=reject; pct=100; rua=mailto:root@csbaird.com; ruf=mailto:root@csbaird.com&#39;]}}</span>
+<span class="sd">    </span>
+<span class="sd">    Get the SPF and DMARC records and store them in a dictionary.</span>
+
+<span class="sd">    :param list domains: list of domains.</span>
+<span class="sd">    :param dict cache: dictionary containing domains mapped to dicts containing spf and dmarc records.</span>
+<span class="sd">    :returns: cache</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+     
     <span class="c1"># Include records for all the domains in the cache</span>
     <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">domains</span><span class="p">:</span>
         <span class="n">cache</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;spf&#39;</span><span class="p">:</span><span class="n">pull_spf</span><span class="p">(</span><span class="n">d</span><span class="p">),</span> <span class="s1">&#39;dmarc&#39;</span><span class="p">:</span><span class="n">pull_dmarc</span><span class="p">(</span><span class="n">d</span><span class="p">)}</span>

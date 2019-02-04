@@ -48,6 +48,9 @@
 
 <div class="viewcode-block" id="resolves"><a class="viewcode-back" href="../../functions.html#sdvalidator.resolves">[docs]</a><span class="k">def</span> <span class="nf">resolves</span><span class="p">(</span><span class="n">domain</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &gt;&gt;&gt; resolves(&#39;csbaird.com&#39;)</span>
+<span class="sd">    True</span>
+<span class="sd">    </span>
 <span class="sd">    If domain resolves to an A, AAAA or CNAME return True </span>
 <span class="sd">    </span>
 <span class="sd">    :param str domain: A domain such as &#39;example.com&#39; </span>
@@ -63,6 +66,9 @@
 
 <div class="viewcode-block" id="filter_resolving_domains"><a class="viewcode-back" href="../../functions.html#sdvalidator.filter_resolving_domains">[docs]</a><span class="k">def</span> <span class="nf">filter_resolving_domains</span><span class="p">(</span><span class="n">domains</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &gt;&gt;&gt; filter_resolving_domains([&#39;csbaird.com&#39;,&#39;fake.csbaird.com&#39;])</span>
+<span class="sd">    [&#39;csbaird.com&#39;]</span>
+
 <span class="sd">    Filters out any non-resolving domain from a list.</span>
 <span class="sd">    </span>
 <span class="sd">    :param list domains: A list of str domains</span>

@@ -46,7 +46,11 @@
 <dl class="function">
 <dt id="sdvalidator.resolves">
 <code class="descclassname">sdvalidator.</code><code class="descname">resolves</code><span class="sig-paren">(</span><em>domain</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sdvalidator/resolver.html#resolves"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdvalidator.resolves" title="Permalink to this definition">¶</a></dt>
-<dd><p>If domain resolves to an A, AAAA or CNAME return True</p>
+<dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">resolves</span><span class="p">(</span><span class="s1">&#39;csbaird.com&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>If domain resolves to an A, AAAA or CNAME return True</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -64,7 +68,11 @@
 <dl class="function">
 <dt id="sdvalidator.filter_resolving_domains">
 <code class="descclassname">sdvalidator.</code><code class="descname">filter_resolving_domains</code><span class="sig-paren">(</span><em>domains</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sdvalidator/resolver.html#filter_resolving_domains"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdvalidator.filter_resolving_domains" title="Permalink to this definition">¶</a></dt>
-<dd><p>Filters out any non-resolving domain from a list.</p>
+<dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">filter_resolving_domains</span><span class="p">([</span><span class="s1">&#39;csbaird.com&#39;</span><span class="p">,</span><span class="s1">&#39;fake.csbaird.com&#39;</span><span class="p">])</span>
+<span class="go">[&#39;csbaird.com&#39;]</span>
+</pre></div>
+</div>
+<p>Filters out any non-resolving domain from a list.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -87,7 +95,11 @@
 <dl class="function">
 <dt id="sdvalidator.pull_spf">
 <code class="descclassname">sdvalidator.</code><code class="descname">pull_spf</code><span class="sig-paren">(</span><em>domain</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sdvalidator/dns_grab.html#pull_spf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdvalidator.pull_spf" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get all txt records that look like they are an spf record</p>
+<dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pull_spf</span><span class="p">(</span><span class="s1">&#39;csbaird.com&#39;</span><span class="p">)</span>
+<span class="go">[&#39;v=spf1 mx -all&#39;]</span>
+</pre></div>
+</div>
+<p>Get all txt records that look like they are an spf record</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -105,37 +117,170 @@
 <dl class="function">
 <dt id="sdvalidator.pull_dmarc">
 <code class="descclassname">sdvalidator.</code><code class="descname">pull_dmarc</code><span class="sig-paren">(</span><em>domain</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sdvalidator/dns_grab.html#pull_dmarc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdvalidator.pull_dmarc" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pull_dmarc</span><span class="p">(</span><span class="s1">&#39;csbaird.com&#39;</span><span class="p">)</span>
+<span class="go">[&#39;v=DMARC1;  p=reject; pct=100; rua=mailto:root@csbaird.com; ruf=mailto:root@csbaird.com&#39;]</span>
+</pre></div>
+</div>
+<p>Get all txt records that look like they are an dmarc record</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – domain like example.com</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of records that look like they are dmarc records.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)">list</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="sdvalidator.resolve_record">
 <code class="descclassname">sdvalidator.</code><code class="descname">resolve_record</code><span class="sig-paren">(</span><em>domain</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sdvalidator/dns_grab.html#resolve_record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdvalidator.resolve_record" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">resolve_record</span><span class="p">(</span><span class="s1">&#39;csbaird.com&#39;</span><span class="p">)</span>
+<span class="go">[&#39;ca3-0eb269d493c84687a2b27e8bea13ca55&#39;, &#39;v=spf1 mx -all&#39;]</span>
+</pre></div>
+</div>
+<p>Get all txt records associated with a domain.
+If a CNAME gets record of the domain it redirects to.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – domain like example.com</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of txt records associated with the domain</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)">list</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="sdvalidator.pull_sd">
 <code class="descclassname">sdvalidator.</code><code class="descname">pull_sd</code><span class="sig-paren">(</span><em>domains</em>, <em>cache={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sdvalidator/dns_grab.html#pull_sd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdvalidator.pull_sd" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dns_grab</span><span class="o">.</span><span class="n">pull_sd</span><span class="p">([</span><span class="s1">&#39;csbaird.com&#39;</span><span class="p">])</span>
+<span class="go">{&#39;csbaird.com&#39;: {&#39;spf&#39;: [&#39;v=spf1 mx -all&#39;], &#39;dmarc&#39;: [&#39;v=DMARC1;  p=reject; pct=100; rua=mailto:root@csbaird.com; ruf=mailto:root@csbaird.com&#39;]}}</span>
+</pre></div>
+</div>
+<p>Get the SPF and DMARC records and store them in a dictionary.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>domains</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – list of domains.</li>
+<li><strong>cache</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – dictionary containing domains mapped to dicts containing spf and dmarc records.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">cache</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="sdvalidator.validate_spf">
-<code class="descclassname">sdvalidator.</code><code class="descname">validate_spf</code><span class="sig-paren">(</span><em>domain</em>, <em>cache={}</em>, <em>depth=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sdvalidator/validate.html#validate_spf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdvalidator.validate_spf" title="Permalink to this definition">¶</a></dt>
-<dd><p>Test1234 doc string</p>
-<dl class="docutils">
-<dt>domain</dt>
-<dd>A string</dd>
-</dl>
+<code class="descclassname">sdvalidator.</code><code class="descname">validate_spf</code><span class="sig-paren">(</span><em>domain</em>, <em>cache={}</em>, <em>__depth=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sdvalidator/validate.html#validate_spf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdvalidator.validate_spf" title="Permalink to this definition">¶</a></dt>
+<dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">validate_spf</span><span class="p">(</span><span class="s1">&#39;csbaird.com&#39;</span><span class="p">)</span>
+<span class="go">&#39;VALID&#39;</span>
+</pre></div>
+</div>
+<p>Check validity of a domain’s spf record.
+Uses a regex and checks recursive lookup depth.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A domain such as example.com</li>
+<li><strong>cache</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Dictionary for storing spf/dmarc records</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">‘VALID’|’INVALID’|’MISSING’</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="sdvalidator.validate_dmarc">
 <code class="descclassname">sdvalidator.</code><code class="descname">validate_dmarc</code><span class="sig-paren">(</span><em>domain</em>, <em>cache={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sdvalidator/validate.html#validate_dmarc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdvalidator.validate_dmarc" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">validate_dmarc</span><span class="p">(</span><span class="s1">&#39;csbaird.com&#39;</span><span class="p">)</span>
+<span class="go">&#39;VALID&#39;</span>
+</pre></div>
+</div>
+<p>Check validity of a domain’s dmarc record.
+Uses a regex and checks recursive lookup depth.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A domain such as example.com</li>
+<li><strong>cache</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Dictionary for storing spf/dmarc records</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">‘VALID’|’INVALID’|’MISSING’</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="sdvalidator.validate_sd">
 <code class="descclassname">sdvalidator.</code><code class="descname">validate_sd</code><span class="sig-paren">(</span><em>domains</em>, <em>cache={}</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sdvalidator/validate.html#validate_sd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdvalidator.validate_sd" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">validate_sd</span><span class="p">([</span><span class="s1">&#39;csbaird.com&#39;</span><span class="p">])</span>
+<span class="go">{&#39;csbaird.com&#39;: {&#39;spf&#39;: [&#39;v=spf1 mx -all&#39;], &#39;dmarc&#39;: [&#39;v=DMARC1;  p=reject; pct=100; rua=mailto:root@csbaird.com; ruf=mailto:root@csbaird.com&#39;], &#39;spf_validity&#39;: &#39;VALID&#39;, &#39;dmarc_validity&#39;: &#39;VALID&#39;}, &#39;fake.csbaird.com&#39;: {&#39;spf&#39;: [&#39;v=spf1 -all&#39;], &#39;dmarc&#39;: [], &#39;spf_validity&#39;: &#39;VALID&#39;, &#39;dmarc_validity&#39;: &#39;VALID&#39;}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">validate_sd</span><span class="p">([</span><span class="s1">&#39;csbaird.com&#39;</span><span class="p">])[</span><span class="s1">&#39;csbaird.com&#39;</span><span class="p">][</span><span class="s1">&#39;spf_validity&#39;</span><span class="p">]</span>
+<span class="go">&#39;VALID&#39;</span>
+</pre></div>
+</div>
+<p>Check the validity of SPF and DMARC records for a list of domains.  <strong>cache[&lt;domain&gt;]</strong> keys:</p>
+<ul class="simple">
+<li>‘<em>spf</em>’: SPF record for the domain</li>
+<li>‘<em>spf_validity</em>’: validity of the SPF record</li>
+<li>‘<em>dmarc</em>’: DMARC record for the domain</li>
+<li>‘<em>dmarc_validity</em>’: validity of the DMARC record for a domain</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>domains</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A list of domains to test</li>
+<li><strong>cache</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A dict to store results</li>
+<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Optionally print the progress to the stdout</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">cache</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </div>
 

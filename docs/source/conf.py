@@ -26,7 +26,7 @@ author = 'Calum Baird'
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = '2.1.11'
+release = '2.1.12'
 
 
 # -- General configuration ---------------------------------------------------

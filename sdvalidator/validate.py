@@ -1,21 +1,16 @@
-"""
-validate.py
-===============
-Validateor module
-"""
-
-
 import sdvalidator, re
-def validate_spf(domain, cache={}, depth=0):
-    
+def validate_spf(domain, cache={}, __depth=0):
     """
-    Test1234 doc string
+    >>> validate_spf('csbaird.com')
+    'VALID'
+    
+    Check validity of a domain's spf record.
+    Uses a regex and checks recursive lookup depth.
 
-    Parameters
-    ----------
-
-    domain
-        A string
+    :param str domain: A domain such as example.com
+    :param dict cache: Dictionary for storing spf/dmarc records
+    :returns: 'VALID'|'INVALID'|'MISSING'
+    :rtype: str
     """
 
     # Get spf record
@@ -38,7 +33,7 @@ def validate_spf(domain, cache={}, depth=0):
     
     # Check there isnt too many lookups
     try:
-        evaluate_record(records[0], domain, depth)
+        __evaluate_record(records[0], domain, depth=__depth)
         return 'VALID'
     except LookupError:
         return 'INVALID'
@@ -49,8 +44,10 @@ import re
 SPF_MECHANISM_REGEX_STRING = "([+\-~?])?(mx|ip4|ip6|exists|include|all|a|redirect|exp|ptr|v)[:=]?([\w+/_.:\-{%}]*)"
 SPF_MECHANISM_REGEX = re.compile(SPF_MECHANISM_REGEX_STRING)
 
-def evaluate_record(spf_record, domain, depth=0, void=0):
-    
+def __evaluate_record(spf_record, domain, depth=0, void=0):
+    """
+    Test hidden record
+    """ 
     # A maximum depth of 10 lookups are allowed as per SPF RFC
     if depth >= 10:
         raise LookupError("max 10 spf lookups exceeded")
@@ -67,7 +64,7 @@ def evaluate_record(spf_record, domain, depth=0, void=0):
         
         if mech == "include":
             depth+=1
-            validate_spf(value,depth=depth)
+            validate_spf(value,__depth=depth)
             #process_domain_spf(value, depth)
         elif mech == "a":
             depth+=1
@@ -87,7 +84,7 @@ def evaluate_record(spf_record, domain, depth=0, void=0):
             # ipaddress.ip_network(address)
         elif mech == "redirect":
             depth+=1
-            validate_spf(value, depth)
+            validate_spf(value, __depth=depth)
         elif mech == "exists":
             depth+=1
             # Resolution not implemented
@@ -122,7 +119,19 @@ DMARC_REGEX = re.compile("v=DMARC1;.*p=.*")
 
 import tldextract
 def validate_dmarc(domain, cache={}):
+    """
+    >>> validate_dmarc('csbaird.com')
+    'VALID'
     
+    Check validity of a domain's dmarc record.
+    Uses a regex and checks recursive lookup depth.
+
+    :param str domain: A domain such as example.com
+    :param dict cache: Dictionary for storing spf/dmarc records
+    :returns: 'VALID'|'INVALID'|'MISSING'
+    :rtype: str
+    """
+ 
     # TODO improve this function
 
     # Get records
@@ -156,6 +165,25 @@ def validate_dmarc(domain, cache={}):
     
 
 def validate_sd(domains, cache={}, verbose=False):
+    """
+    >>> validate_sd(['csbaird.com'])
+    {'csbaird.com': {'spf': ['v=spf1 mx -all'], 'dmarc': ['v=DMARC1;  p=reject; pct=100; rua=mailto:root@csbaird.com; ruf=mailto:root@csbaird.com'], 'spf_validity': 'VALID', 'dmarc_validity': 'VALID'}, 'fake.csbaird.com': {'spf': ['v=spf1 -all'], 'dmarc': [], 'spf_validity': 'VALID', 'dmarc_validity': 'VALID'}}
+    >>> validate_sd(['csbaird.com'])['csbaird.com']['spf_validity']
+    'VALID'
+
+    Check the validity of SPF and DMARC records for a list of domains.  **cache[<domain>]** keys:
+    
+    - '*spf*': SPF record for the domain
+    - '*spf_validity*': validity of the SPF record
+    - '*dmarc*': DMARC record for the domain
+    - '*dmarc_validity*': validity of the DMARC record for a domain
+
+    :param list domains: A list of domains to test
+    :param list cache: A dict to store results
+    :param bool verbose: Optionally print the progress to the stdout
+    :returns: cache
+    :rtype: dict
+    """
     i = 0
     for d in domains:
         if verbose:

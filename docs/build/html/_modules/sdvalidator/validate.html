@@ -39,24 +39,19 @@
           <div class="body" role="main">
             
   <h1>Source code for sdvalidator.validate</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">validate.py</span>
-<span class="sd">===============</span>
-<span class="sd">Validateor module</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-
-<span class="kn">import</span> <span class="nn">sdvalidator</span><span class="o">,</span> <span class="nn">re</span>
-<div class="viewcode-block" id="validate_spf"><a class="viewcode-back" href="../../functions.html#sdvalidator.validate_spf">[docs]</a><span class="k">def</span> <span class="nf">validate_spf</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="p">{},</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    
+<span></span><span class="kn">import</span> <span class="nn">sdvalidator</span><span class="o">,</span> <span class="nn">re</span>
+<div class="viewcode-block" id="validate_spf"><a class="viewcode-back" href="../../functions.html#sdvalidator.validate_spf">[docs]</a><span class="k">def</span> <span class="nf">validate_spf</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="p">{},</span> <span class="n">__depth</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Test1234 doc string</span>
+<span class="sd">    &gt;&gt;&gt; validate_spf(&#39;csbaird.com&#39;)</span>
+<span class="sd">    &#39;VALID&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    Check validity of a domain&#39;s spf record.</span>
+<span class="sd">    Uses a regex and checks recursive lookup depth.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-
-<span class="sd">    domain</span>
-<span class="sd">        A string</span>
+<span class="sd">    :param str domain: A domain such as example.com</span>
+<span class="sd">    :param dict cache: Dictionary for storing spf/dmarc records</span>
+<span class="sd">    :returns: &#39;VALID&#39;|&#39;INVALID&#39;|&#39;MISSING&#39;</span>
+<span class="sd">    :rtype: str</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Get spf record</span>
@@ -79,7 +74,7 @@
     
     <span class="c1"># Check there isnt too many lookups</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">evaluate_record</span><span class="p">(</span><span class="n">records</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">,</span> <span class="n">depth</span><span class="p">)</span>
+        <span class="n">__evaluate_record</span><span class="p">(</span><span class="n">records</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="n">__depth</span><span class="p">)</span>
         <span class="k">return</span> <span class="s1">&#39;VALID&#39;</span>
     <span class="k">except</span> <span class="ne">LookupError</span><span class="p">:</span>
         <span class="k">return</span> <span class="s1">&#39;INVALID&#39;</span></div>
@@ -90,8 +85,10 @@
 <span class="n">SPF_MECHANISM_REGEX_STRING</span> <span class="o">=</span> <span class="s2">&quot;([+\-~?])?(mx|ip4|ip6|exists|include|all|a|redirect|exp|ptr|v)[:=]?([\w+/_.:\-{%}]*)&quot;</span>
 <span class="n">SPF_MECHANISM_REGEX</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">SPF_MECHANISM_REGEX_STRING</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">evaluate_record</span><span class="p">(</span><span class="n">spf_record</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">void</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    
+<span class="k">def</span> <span class="nf">__evaluate_record</span><span class="p">(</span><span class="n">spf_record</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">void</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Test hidden record</span>
+<span class="sd">    &quot;&quot;&quot;</span> 
     <span class="c1"># A maximum depth of 10 lookups are allowed as per SPF RFC</span>
     <span class="k">if</span> <span class="n">depth</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">LookupError</span><span class="p">(</span><span class="s2">&quot;max 10 spf lookups exceeded&quot;</span><span class="p">)</span>
@@ -108,7 +105,7 @@
         
         <span class="k">if</span> <span class="n">mech</span> <span class="o">==</span> <span class="s2">&quot;include&quot;</span><span class="p">:</span>
             <span class="n">depth</span><span class="o">+=</span><span class="mi">1</span>
-            <span class="n">validate_spf</span><span class="p">(</span><span class="n">value</span><span class="p">,</span><span class="n">depth</span><span class="o">=</span><span class="n">depth</span><span class="p">)</span>
+            <span class="n">validate_spf</span><span class="p">(</span><span class="n">value</span><span class="p">,</span><span class="n">__depth</span><span class="o">=</span><span class="n">depth</span><span class="p">)</span>
             <span class="c1">#process_domain_spf(value, depth)</span>
         <span class="k">elif</span> <span class="n">mech</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span>
             <span class="n">depth</span><span class="o">+=</span><span class="mi">1</span>
@@ -128,7 +125,7 @@
             <span class="c1"># ipaddress.ip_network(address)</span>
         <span class="k">elif</span> <span class="n">mech</span> <span class="o">==</span> <span class="s2">&quot;redirect&quot;</span><span class="p">:</span>
             <span class="n">depth</span><span class="o">+=</span><span class="mi">1</span>
-            <span class="n">validate_spf</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">depth</span><span class="p">)</span>
+            <span class="n">validate_spf</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">__depth</span><span class="o">=</span><span class="n">depth</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">mech</span> <span class="o">==</span> <span class="s2">&quot;exists&quot;</span><span class="p">:</span>
             <span class="n">depth</span><span class="o">+=</span><span class="mi">1</span>
             <span class="c1"># Resolution not implemented</span>
@@ -163,7 +160,19 @@
 
 <span class="kn">import</span> <span class="nn">tldextract</span>
 <div class="viewcode-block" id="validate_dmarc"><a class="viewcode-back" href="../../functions.html#sdvalidator.validate_dmarc">[docs]</a><span class="k">def</span> <span class="nf">validate_dmarc</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="p">{}):</span>
-    
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &gt;&gt;&gt; validate_dmarc(&#39;csbaird.com&#39;)</span>
+<span class="sd">    &#39;VALID&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    Check validity of a domain&#39;s dmarc record.</span>
+<span class="sd">    Uses a regex and checks recursive lookup depth.</span>
+
+<span class="sd">    :param str domain: A domain such as example.com</span>
+<span class="sd">    :param dict cache: Dictionary for storing spf/dmarc records</span>
+<span class="sd">    :returns: &#39;VALID&#39;|&#39;INVALID&#39;|&#39;MISSING&#39;</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+ 
     <span class="c1"># TODO improve this function</span>
 
     <span class="c1"># Get records</span>
@@ -197,6 +206,25 @@
     
 
 <div class="viewcode-block" id="validate_sd"><a class="viewcode-back" href="../../functions.html#sdvalidator.validate_sd">[docs]</a><span class="k">def</span> <span class="nf">validate_sd</span><span class="p">(</span><span class="n">domains</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="p">{},</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &gt;&gt;&gt; validate_sd([&#39;csbaird.com&#39;])</span>
+<span class="sd">    {&#39;csbaird.com&#39;: {&#39;spf&#39;: [&#39;v=spf1 mx -all&#39;], &#39;dmarc&#39;: [&#39;v=DMARC1;  p=reject; pct=100; rua=mailto:root@csbaird.com; ruf=mailto:root@csbaird.com&#39;], &#39;spf_validity&#39;: &#39;VALID&#39;, &#39;dmarc_validity&#39;: &#39;VALID&#39;}, &#39;fake.csbaird.com&#39;: {&#39;spf&#39;: [&#39;v=spf1 -all&#39;], &#39;dmarc&#39;: [], &#39;spf_validity&#39;: &#39;VALID&#39;, &#39;dmarc_validity&#39;: &#39;VALID&#39;}}</span>
+<span class="sd">    &gt;&gt;&gt; validate_sd([&#39;csbaird.com&#39;])[&#39;csbaird.com&#39;][&#39;spf_validity&#39;]</span>
+<span class="sd">    &#39;VALID&#39;</span>
+
+<span class="sd">    Check the validity of SPF and DMARC records for a list of domains.  **cache[&lt;domain&gt;]** keys:</span>
+<span class="sd">    </span>
+<span class="sd">    - &#39;*spf*&#39;: SPF record for the domain</span>
+<span class="sd">    - &#39;*spf_validity*&#39;: validity of the SPF record</span>
+<span class="sd">    - &#39;*dmarc*&#39;: DMARC record for the domain</span>
+<span class="sd">    - &#39;*dmarc_validity*&#39;: validity of the DMARC record for a domain</span>
+
+<span class="sd">    :param list domains: A list of domains to test</span>
+<span class="sd">    :param list cache: A dict to store results</span>
+<span class="sd">    :param bool verbose: Optionally print the progress to the stdout</span>
+<span class="sd">    :returns: cache</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">domains</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
