@@ -1,0 +1,10 @@
+\indexentry{sdvalidator (module)@\spxentry{sdvalidator}\spxextra{module}|hyperpage}{3}
+\indexentry{resolves() (in module sdvalidator)@\spxentry{resolves()}\spxextra{in module sdvalidator}|hyperpage}{3}
+\indexentry{filter\_resolving\_domains() (in module sdvalidator)@\spxentry{filter\_resolving\_domains()}\spxextra{in module sdvalidator}|hyperpage}{3}
+\indexentry{pull\_spf() (in module sdvalidator)@\spxentry{pull\_spf()}\spxextra{in module sdvalidator}|hyperpage}{3}
+\indexentry{pull\_dmarc() (in module sdvalidator)@\spxentry{pull\_dmarc()}\spxextra{in module sdvalidator}|hyperpage}{3}
+\indexentry{resolve\_record() (in module sdvalidator)@\spxentry{resolve\_record()}\spxextra{in module sdvalidator}|hyperpage}{3}
+\indexentry{pull\_sd() (in module sdvalidator)@\spxentry{pull\_sd()}\spxextra{in module sdvalidator}|hyperpage}{3}
+\indexentry{validate\_spf() (in module sdvalidator)@\spxentry{validate\_spf()}\spxextra{in module sdvalidator}|hyperpage}{3}
+\indexentry{validate\_dmarc() (in module sdvalidator)@\spxentry{validate\_dmarc()}\spxextra{in module sdvalidator}|hyperpage}{3}
+\indexentry{validate\_sd() (in module sdvalidator)@\spxentry{validate\_sd()}\spxextra{in module sdvalidator}|hyperpage}{3}

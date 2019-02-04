@@ -1,8 +1,12 @@
 import socket, time, signal
 
 def resolves(domain):
-    try:
-        socket.gethostbyname(domain)
+    '''
+	If domain resolves to an A, AAAA or CNAME return True 
+	'''
+	try:
+        #socket.gethostbyname(domain)
+		socket.getaddrinfo(domain,80)
         return True
     except socket.gaierror:
         return False

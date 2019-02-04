@@ -7,7 +7,6 @@ def sdvalidate():
 
     if len(sys.argv) > 1:
         domain = sys.argv[1]
-        print(domain,end='')
         if not resolves(domain):
             print(domain,'DOES NOT RESOLVE')
         else:
