@@ -1,20 +1,19 @@
 Metadata-Version: 2.1
 Name: sdvalidator
-Version: 2.1.12
+Version: 2.1.13
 Summary: SPF and DMARC validation tool
-Home-page: UNKNOWN
+Home-page: https://github.com/calumsbaird/sdvalidator
 Author: Calum Baird
 Author-email: calum.baird7011@gmail.com
 License: UNKNOWN
-Description: # SPF and DMARC validator
+Description: SPF and DMARC validator
         
-        This link helped <https://stackoverflow.com/questions/39280326/python-entry-point-console-scripts-not-found>
+        ## Documentation
+        <http://www.csbaird.com/sdvalidator>
         
         ## TODO
         - Better processing for DMARC records
-        - docs
         - bug with redirect.  Fix REGEX eg 'gmail.com'
-        
         
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3

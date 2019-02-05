@@ -5,13 +5,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="sdvalidator",
-    version="2.1.12",
+    version="2.1.13",
     author="Calum Baird",
     author_email="calum.baird7011@gmail.com",
     description="SPF and DMARC validation tool",
     long_description=long_description,
     long_description_content_type="text/markdown",
-#    url="https://github.com/pypa/sampleproject",
+    url="https://github.com/calumsbaird/sdvalidator",
     packages=setuptools.find_packages(),
     entry_points = {
         'console_scripts': ['sdvalidate=sdvalidator.command_line:sdvalidate'],
