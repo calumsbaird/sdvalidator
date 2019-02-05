@@ -2,7 +2,7 @@ SPF and DMARC validator
 
 ## Documentation
 
-<http://www.csbaird.com/sdvalidator>
+<http://www.csbaird.com/software/sdvalidator>
 
 ## TODO
 
