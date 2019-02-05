@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: sdvalidator
-Version: 2.1.13
+Version: 2.1.14
 Summary: SPF and DMARC validation tool
 Home-page: https://github.com/calumsbaird/sdvalidator
 Author: Calum Baird
@@ -9,9 +9,11 @@ License: UNKNOWN
 Description: SPF and DMARC validator
         
         ## Documentation
-        <http://www.csbaird.com/sdvalidator>
+        
+        <http://www.csbaird.com/software/sdvalidator>
         
         ## TODO
+        
         - Better processing for DMARC records
         - bug with redirect.  Fix REGEX eg 'gmail.com'
         
