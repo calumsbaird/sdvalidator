@@ -3,25 +3,29 @@ resolver.py
 ===========
 """
 
-import socket, time, signal
+import socket, time, signal, dns.resolver
+RESOLVING_TYPES = ['A', 'AAAA', 'CNAME', 'MX']
 
 def resolves(domain):
     """
     >>> resolves('csbaird.com')
     True
     
-    If domain resolves to an A, AAAA or CNAME return True 
+    If domain resolves to an A, AAAA, MX or CNAME return True 
     
     :param str domain: A domain such as 'example.com' 
     :returns: True if resolves to an address
     :rtype: int
     """
-    try:
-        #socket.gethostbyname(domain)
-        socket.getaddrinfo(domain,80)
-        return True
-    except socket.gaierror:
-        return False
+    
+    for dns_type in RESOLVING_TYPES:
+        try:
+            dns.resolver.query(domain, dns_type)
+            return True # Pass if at least 1 lookup works
+        except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN) as e:
+            pass
+    return False
+    
 
 def filter_resolving_domains(domains, verbose=False):
     """

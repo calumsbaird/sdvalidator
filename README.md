@@ -8,4 +8,7 @@ SPF and DMARC validator
 
 - Better processing for DMARC records
 - bug with redirect.  Fix REGEX eg 'gmail.com'
+    
 - bug with non-resolving domain.  Should check SPF record if A or MX
+    Made python references local to package `from . import dns_grab`
+    Cleaned up old files

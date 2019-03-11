@@ -1,4 +1,5 @@
-import sdvalidator, re
+import  re
+from . import dns_grab
 def validate_spf(domain, cache={}, __depth=0):
     """
     >>> validate_spf('csbaird.com')
@@ -15,7 +16,7 @@ def validate_spf(domain, cache={}, __depth=0):
 
     # Get spf record
     if not domain in cache:
-        sdvalidator.pull_sd([domain],cache=cache)
+        dns_grab.pull_sd([domain],cache=cache)
     records = cache[domain]['spf']
     # Check it is valid length
     #print(records)
@@ -136,7 +137,7 @@ def validate_dmarc(domain, cache={}):
 
     # Get records
     if not domain in cache:
-        sdvalidator.pull_sd([domain],cache=cache)
+        dns_grab.pull_sd([domain],cache=cache)
     records = cache[domain]['dmarc']
     
     # Check root domain if no record
@@ -146,7 +147,7 @@ def validate_dmarc(domain, cache={}):
 
     # Check cache
     if not domain in cache:
-        sdvalidator.pull_sd([domain],cache=cache)
+        dns_grab.pull_sd([domain],cache=cache)
     records = cache[domain]['dmarc']
 
     # Check basic errors
@@ -193,7 +194,7 @@ def validate_sd(domains, cache={}, verbose=False):
 
         # Get the spf and dmarc records
         if d not in cache:
-           sdvalidator.pull_sd([d],cache=cache)
+            dns_grab.pull_sd([d],cache=cache)
         
         spf = cache[d]['spf']
         dmarc = cache[d]['dmarc']
